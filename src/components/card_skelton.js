@@ -9,27 +9,27 @@ function CardSkeleton(props) {
       <Row>
         <Col>
           <Skeleton count={1} width={"95%"} height={250} />
-          <Skeleton count={1} width={"95%"} height={50} />
+          {/* <Skeleton count={1} width={"95%"} height={50} /> */}
           <Skeleton count={1} width={"95%"} height={250} className="mt-3"/>
-          <Skeleton count={1} width={"95%"} height={50} />
+          {/* <Skeleton count={1} width={"95%"} height={50} /> */}
         </Col>
         <Col>
           <Skeleton count={1} width={"95%"} height={250} />
-          <Skeleton count={1} width={"95%"} height={50} />
+          {/* <Skeleton count={1} width={"95%"} height={50} /> */}
           <Skeleton count={1} width={"95%"} height={250} className="mt-3" />
-          <Skeleton count={1} width={"95%"} height={50} />
+          {/* <Skeleton count={1} width={"95%"} height={50} /> */}
         </Col>
         <Col>
           <Skeleton count={1} width={"95%"} height={250} />
-          <Skeleton count={1} width={"95%"} height={50} />
+          {/* <Skeleton count={1} width={"95%"} height={50} /> */}
           <Skeleton count={1} width={"95%"} height={250} className="mt-3"/>
-          <Skeleton count={1} width={"95%"} height={50} />
+          {/* <Skeleton count={1} width={"95%"} height={50} /> */}
         </Col>
         <Col>
           <Skeleton count={1} width={"95%"} height={250} />
-          <Skeleton count={1} width={"95%"} height={50} />
+          {/* <Skeleton count={1} width={"95%"} height={50} /> */}
           <Skeleton count={1} width={"95%"} height={250} className="mt-3"/>
-          <Skeleton count={1} width={"95%"} height={50} />
+          {/* <Skeleton count={1} width={"95%"} height={50} /> */}
         </Col>
       </Row>
     </>

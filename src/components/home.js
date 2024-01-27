@@ -94,64 +94,63 @@ function SelectBasicExample() {
           <Navbar.Brand href="#">WallpaperWhimsy</Navbar.Brand>
         </Container>
       </Navbar>
-      <Container>
-        <Row>
-          <Col lg={4}>
-            <Form.Select
-              aria-label="Select Topic"
-              className="my-3"
-              onChange={(e) => handleSelectChange(e)}
-            >
-              <option>Select Topics</option>
-              {topics
-                ? topics.map((topic, index) => (
-                    <option value={topic} key={index}>
-                      {topic}
-                    </option>
-                  ))
-                : null}
-            </Form.Select>
-          </Col>
-          <Col lg={8}>
-            <SearchBar />
-          </Col>
-        </Row>
+      <Container fluid className="px-0">
+        <Container>
+          <Row>
+            <Col xs={12} lg={4}>
+              <Form.Select
+                aria-label="Select Topic"
+                className="my-3"
+                onChange={(e) => handleSelectChange(e)}
+              >
+                <option>Select Topics</option>
+                {topics
+                  ? topics.map((topic, index) => (
+                      <option value={topic} key={index}>
+                        {topic}
+                      </option>
+                    ))
+                  : null}
+              </Form.Select>
+            </Col>
+            <Col xs={12} lg={8}>
+              <SearchBar />
+            </Col>
+          </Row>
 
-        {isLoading ? <CardSkeleton /> : <WallpperCard details={wallpapers} />}
+          {isLoading ? <CardSkeleton /> : <WallpperCard details={wallpapers} />}
 
-        {wallpapers.page ? (
-          <div
-            style={{ display: "flex", justifyContent: "center" }}
-            className="my-3"
-          >
-            <Pagination>
-              <Pagination.Item key={wallpapers.page} active={true}>
-                {wallpapers.page}
-              </Pagination.Item>
-            </Pagination>
+          {wallpapers.page ? (
+            <div className="d-flex justify-content-center my-3">
+              <Pagination>
+                <Pagination.Item key={wallpapers.page} active={true}>
+                  {wallpapers.page}
+                </Pagination.Item>
+              </Pagination>
+            </div>
+          ) : null}
+
+          <div className="d-grid gap-2 my-3">
+            {wallpapers.prev_page ? (
+              <Button
+                variant="dark"
+                size="lg"
+                onClick={(e) => handlePrevPage(wallpapers.prev_page)}
+              >
+                <span>&#8592;</span>Previous Page
+              </Button>
+            ) : null}
+            {wallpapers.next_page ? (
+              <Button
+                variant="dark"
+                size="lg"
+                onClick={(e) => handleNextPage(wallpapers.next_page)}
+              >
+                Next Page <span>&#8594;</span>
+              </Button>
+            ) : null}
           </div>
-        ) : null}
-
-        <div className="d-grid gap-2 my-3">
-          {wallpapers.prev_page ? (
-            <Button
-              variant="dark"
-              size="md"
-              onClick={(e) => handlePrevPage(wallpapers.prev_page)}
-            >
-              <span>&#8592;</span>Previous Page
-            </Button>
-          ) : null}
-          {wallpapers.next_page ? (
-            <Button
-              variant="dark"
-              size="md"
-              onClick={(e) => handleNextPage(wallpapers.next_page)}
-            >
-              Next Page <span>&#8594;</span>
-            </Button>
-          ) : null}
-        </div>
+        </Container>
       </Container>
     </>
   );

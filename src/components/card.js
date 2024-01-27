@@ -14,6 +14,7 @@ function WallpaperCard({ details }) {
   const [showModal, setShowModal] = useState(false);
   const [selectedImage, setSelectedImage] = useState({});
   const [downloadVersion, setDownloadVersion] = useState("original");
+  const [hovered, setHovered] = useState(false);
 
   // const handleSetWallpaper = (id, url, name) => {
   //   const value = {
@@ -60,27 +61,59 @@ function WallpaperCard({ details }) {
       }
     }
   };
+  const titleStyle = {
+    fontFamily: "Caveat, cursive",
+    fontWeight: "bold",
+    fontSize: "1.3rem",
+    color: "#333",
+    textShadow: "2px 2px 4px rgba(0, 0, 0, 0.3)",
+    background: "linear-gradient(to right, #FFD700, #FF8C00)",
+    WebkitBackgroundClip: "text",
+    // color: "transparent",
+    display: "inline-block",
+    // transition: "font-size 0.3s ease-in-out", // Add transition for smooth effect
+  };
+  const enlargedTitleStyle = {
+    fontSize: hovered ? '1.3rem' : '1.3rem',
+  };
+
+  const getCardWidth = () => {
+    // Define the card width based on screen size
+    if (window.innerWidth >= 1200) {
+      return '25rem'; // Desktop and ultra-wide screens
+    } else if (window.innerWidth >= 768) {
+      return '100%'; // Tablet screens
+    } else {
+      return '100%'; // Mobile screens
+    }
+  };
 
   return (
     <>
-      <Row className="g-4">
+      <Row className="row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
         {details?.photos && details.photos.length > 0
           ? details.photos.map((details, index) => (
-              <Col key={index}>
-                <Card
-                  style={{ width: "18rem", height: "18rem", cursor: "pointer" }}
+            <Col key={index} className="mb-4">
+              <Card
+                  style={{ width: getCardWidth(), height: "auto", cursor: "pointer" }}
                   bg="light"
                   onClick={() => handleOpenModal(details)}
                 >
                   <Card.Img
-                    variant="top"
+                    // variant="top"
                     src={details.src.medium}
-                    style={{ height: "12rem" }}
+                    style={{ width: "auto", height: "auto" }}
                   />
-                  <Card.Body>
-                    <Card.Title>{details.alt.slice(0, 20) + "..."}</Card.Title>
-                    <Row>
-                      {/* <Button
+                  <Card.ImgOverlay>
+                    <Card.Title
+                      style={{ ...titleStyle, ...enlargedTitleStyle }}
+                      onMouseEnter={() => setHovered(true)}
+                      onMouseLeave={() => setHovered(false)}
+                    >
+                      {details.alt.slice(0, 20) + "..."}
+                    </Card.Title>
+                    {/* <Row>
+                      <Button
                         variant="dark"
                         onClick={() =>
                           handleSetWallpaper(
@@ -91,9 +124,9 @@ function WallpaperCard({ details }) {
                         }
                       >
                         Set as Wallpaper
-                      </Button> */}
-                    </Row>
-                  </Card.Body>
+                      </Button>
+                    </Row> */}
+                  </Card.ImgOverlay>
                 </Card>
               </Col>
             ))
